@@ -21,10 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.prashant.clickretina.model.UserData
-import com.prashant.clickretina.view.ContentTabs
-import com.prashant.clickretina.view.FollowerStats
-import com.prashant.clickretina.view.ProfileHeader
-import com.prashant.clickretina.view.SocialLinks
 
 @Composable
 fun ProfileSuccessLayout(userData: UserData) {

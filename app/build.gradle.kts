@@ -3,18 +3,20 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.androidx.compose.compiler)
     id("kotlin-kapt")
     id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.prashant.clickretina"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.prashant.clickretina"
         minSdk = 24
-        targetSdk = 36
+        // FIX: Changed targetSdk to match compileSdk
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -43,10 +45,6 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -68,13 +66,14 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
 
-    // Ktor
+    // Ktor (Networking)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.logging)
 
+    // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
     // Coil
@@ -83,10 +82,6 @@ dependencies {
     // Koin
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
